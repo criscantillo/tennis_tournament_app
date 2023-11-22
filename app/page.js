@@ -1,24 +1,20 @@
+"use client"
+
+import { useState } from 'react';
+import { useEffect } from 'react';
 import Image from 'next/image'
 import Link from "next/link";
 
 const HomeUser = () =>{
-  const tournamets = [
-    {
-      'id':1,
-      'name':'Torneo de prueba 1',
-      'description': 'esto es una prueba de torneos'
-    },
-    {
-      'id':2,
-      'name':'Torneo de prueba 2',
-      'description': 'esto es una prueba de torneos dos con más texto que los otros'
-    },
-    {
-      'id':3,
-      'name':'Torneo de prueba 3',
-      'description': 'esto es una prueba de torneos tres'
-    }
-  ]
+  const [listTournament, setTournamentData] = useState([]);
+
+    useEffect(() => {
+        fetch("/api/tournaments")
+          .then((response) => response.json())
+          .then((data) => {
+            setTournamentData(data);
+          });
+      }, []);
 
   return (
     <div>
@@ -26,7 +22,7 @@ const HomeUser = () =>{
         Torneos disponibles
       </h2>
       <main className='flex flex-wrap'>
-        { tournamets.map((tournament) =>{
+        { listTournament.map((tournament) =>{
           return(
             <div 
               key={tournament.id}

@@ -1,4 +1,4 @@
-const tournamentService = require('../../services/tournamentService');
+const tournamentService = require('../../api_services/tournamentService');
 const statusCodes = require('http-status-codes').StatusCodes;
 import { NextResponse } from "next/server";
 

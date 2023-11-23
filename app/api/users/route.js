@@ -1,4 +1,4 @@
-const userService = require('../../services/userService');
+const userService = require('../../api_services/userService');
 const statusCodes = require('http-status-codes').StatusCodes;
 import { NextResponse } from "next/server";
 

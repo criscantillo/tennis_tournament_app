@@ -14,6 +14,8 @@ module.exports = {
     
     async saveTournament(tournamentData){
         let collection = await TournamentDB.getCollection();
+        tournamentData.start_at = new Date(tournamentData.start_at);
+
         const result = await collection.insertOne(tournamentData);
         tournamentData._id = result.insertedId
 
@@ -25,6 +27,7 @@ module.exports = {
             let _id = new ObjectId(tournamentData._id);
             let collection = await TournamentDB.getCollection();
             delete tournamentData['_id'];
+            tournamentData.start_at = new Date(tournamentData.start_at);
 
             await collection
                     .replaceOne({_id }, tournamentData);
